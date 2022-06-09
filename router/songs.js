@@ -1,12 +1,22 @@
 const express = require('express');
 const router = express.Router();
-
-// All routes definitive GET /songs 
+const {showAll} = require('../model/songs.js')
+// GET /songs 
 router.get('/', (req, res)=>{
     res.send('Entry to section songs')
 })
 
 
 
+// GET /songs/all
+router.get('/all', (req,res)=>{
+    res.json(showAll())
+})
 
-module.exports = router
+router.get('/:name', (req,res)=>{
+    const {name} = req.params;    
+    res.send(name)
+})
+
+
+module.exports = router;
